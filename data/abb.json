@@ -1,0 +1,56 @@
+{
+  "manufacturer": "ABB",
+  "version": "2026.08",
+  "components": {
+    "capacitors": [
+      {
+        "family": "CLMD",
+        "status": "família atual"
+      },
+      {
+        "family": "QCap",
+        "status": "família atual"
+      }
+    ],
+    "contactors": [
+      {
+        "family": "UAFC",
+        "category": "AC-6b",
+        "status": "família atual"
+      },
+      {
+        "family": "UAFC..RA",
+        "category": "AC-6b",
+        "status": "família atual"
+      }
+    ],
+    "controllers": [
+      {
+        "family": "RVC-L",
+        "status": "família atual"
+      },
+      {
+        "family": "RVT-L",
+        "status": "família atual"
+      }
+    ],
+    "reactors": [
+      {
+        "family": "Detuned Reactor LV",
+        "status": "família atual"
+      }
+    ],
+    "breakers": [
+      {
+        "family": "SACE Tmax XT",
+        "status": "família atual"
+      }
+    ],
+    "active_filters": [
+      {
+        "family": "PQactiF / PQF",
+        "status": "família atual"
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "manufacturer": "Schneider Electric",
+  "version": "2026.08",
+  "components": {
+    "capacitors": [
+      {
+        "family": "EasyLogic PFC / EasyCan",
+        "model": "BLRCS100A120B44",
+        "kvar": 12,
+        "voltage": 440,
+        "frequency": 60,
+        "status": "confirmado"
+      },
+      {
+        "family": "VarPlus Can HD",
+        "status": "família atual"
+      }
+    ],
+    "contactors": [
+      {
+        "family": "TeSys Deca LC1D.K",
+        "model": "LC1DMKP7",
+        "kvar": 25,
+        "voltage": 400,
+        "coil": "230 Vca 50/60 Hz",
+        "status": "confirmado"
+      }
+    ],
+    "controllers": [
+      {
+        "family": "PowerLogic VarPlus Logic",
+        "model": "VPL12N",
+        "stages": 12,
+        "communication": "Modbus RS485",
+        "status": "confirmado"
+      }
+    ],
+    "reactors": [
+      {
+        "family": "PowerLogic PFC Detuned Reactor",
+        "model": "LVR07250B40T",
+        "detuning_percent": 7,
+        "kvar": 25,
+        "voltage": 400,
+        "frequency": 60,
+        "tuning_hz": 228,
+        "status": "confirmado"
+      }
+    ],
+    "breakers": [
+      {
+        "family": "ComPacT NSXm / NSX",
+        "status": "família atual"
+      }
+    ],
+    "active_filters": [
+      {
+        "family": "PowerLogic AccuSine PCS+",
+        "status": "família atual"
+      }
+    ]
+  }
+}

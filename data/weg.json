@@ -1,0 +1,150 @@
+{
+  "manufacturer": "WEG",
+  "version": "2026.08",
+  "components": {
+    "capacitors": [
+      {
+        "family": "UCWT HD",
+        "model": "UCWT5V40 L16 HD",
+        "code": "10046012",
+        "kvar": 5,
+        "voltage": 380,
+        "frequency": 60,
+        "status": "confirmado"
+      },
+      {
+        "family": "UCWT HD",
+        "model": "UCWT10V40 N20 HD",
+        "code": "11313787",
+        "kvar": 10,
+        "voltage": 380,
+        "frequency": 60,
+        "status": "confirmado"
+      },
+      {
+        "family": "UCWT HD",
+        "model": "UCWT20V40 Q26 HD",
+        "code": "11916901",
+        "kvar": 20,
+        "voltage": 380,
+        "frequency": 60,
+        "status": "confirmado"
+      },
+      {
+        "family": "UCWT UHD",
+        "model": "UCWT20V40 U26 UHD",
+        "code": "16202794",
+        "kvar": 20,
+        "voltage": 380,
+        "frequency": 60,
+        "status": "confirmado"
+      },
+      {
+        "family": "UCWT HD",
+        "model": "UCWT25V40 S26 HD",
+        "code": "11916924",
+        "kvar": 25,
+        "voltage": 380,
+        "frequency": 60,
+        "status": "confirmado"
+      },
+      {
+        "family": "UCWT UHD",
+        "model": "UCWT25V40 U26 UHD",
+        "code": "16202795",
+        "kvar": 25,
+        "voltage": 380,
+        "frequency": 60,
+        "status": "confirmado"
+      }
+    ],
+    "contactors": [
+      {
+        "family": "CWMC",
+        "model": "CWMC18-10-30X26",
+        "code": "12387956",
+        "category": "AC-6b",
+        "coil": "220 V / 60 Hz",
+        "status": "confirmado"
+      },
+      {
+        "family": "CWMC",
+        "model": "CWMC25",
+        "code": null,
+        "category": "AC-6b",
+        "status": "família atual"
+      },
+      {
+        "family": "CWMC",
+        "model": "CWMC32",
+        "code": null,
+        "category": "AC-6b",
+        "status": "família atual"
+      },
+      {
+        "family": "CWMC",
+        "model": "CWMC50",
+        "code": null,
+        "category": "AC-6b",
+        "status": "família atual"
+      },
+      {
+        "family": "CWMC",
+        "model": "CWMC65",
+        "code": null,
+        "category": "AC-6b",
+        "status": "família atual"
+      },
+      {
+        "family": "CWMC",
+        "model": "CWMC80",
+        "code": null,
+        "category": "AC-6b",
+        "status": "família atual"
+      }
+    ],
+    "controllers": [
+      {
+        "family": "PFW03",
+        "model": "PFW03-T12",
+        "code": "14387080",
+        "stages": 12,
+        "communication": "RS485 / Modbus RTU",
+        "status": "confirmado"
+      },
+      {
+        "family": "PFW03",
+        "model": "PFW03-T24",
+        "code": "14387086",
+        "stages": 24,
+        "communication": "RS485 / Modbus RTU",
+        "status": "confirmado"
+      }
+    ],
+    "reactors": [
+      {
+        "family": "DRW7",
+        "model": "DRW7-2,40V40",
+        "code": "12789187",
+        "detuning_percent": 7,
+        "kvar": 12,
+        "voltage": 380,
+        "frequency": 60,
+        "status": "confirmado"
+      },
+      {
+        "family": "DRW14",
+        "model": "DRW14",
+        "code": null,
+        "detuning_percent": 14,
+        "status": "família atual"
+      }
+    ],
+    "breakers": [
+      {
+        "family": "DWB",
+        "status": "família atual"
+      }
+    ]
+  }
+}
