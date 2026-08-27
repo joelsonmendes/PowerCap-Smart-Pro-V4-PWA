@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="PowerCap Smart Pro V4 — dimensionamento profissional de banco de capacitores e análise preliminar de qualidade de energia.">
+  <title>PowerCap Smart Pro V4</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icons/icon-192.png">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="eyebrow">PowerCap Smart Pro</div>
+    <h1>V4 — Engenharia & Qualidade de Energia</h1>
+  </div>
+  <button id="themeBtn" class="btn ghost">Claro/Escuro</button>
+</header>
+
+<main class="app-shell">
+  <nav class="tabs" aria-label="Módulos">
+    <button class="tab active" data-panel="projeto">Projeto</button>
+    <button class="tab" data-panel="cabos">Cabos & proteção</button>
+    <button class="tab" data-panel="harmonicas">Harmônicas</button>
+    <button class="tab" data-panel="biblioteca">Biblioteca</button>
+    <button class="tab" data-panel="materiais">Materiais</button>
+    <button class="tab" data-panel="projetos">Projetos</button>
+    <button class="tab" data-panel="relatorio">Relatório / PDF</button>
+  </nav>
+
+  <section id="projeto" class="panel active">
+    <div class="grid two">
+      <form id="projectForm" class="card">
+        <h2>Dados do projeto</h2>
+        <div class="form-grid">
+          <label>Cliente<input id="client" value="Indústria Exemplo"></label>
+          <label>Projeto<input id="projectName" value="Banco de Capacitores QGBT-01"></label>
+          <label>Potência ativa (kW)<input id="pkw" type="number" min="0.1" step="0.1" value="180"></label>
+          <label>Tensão L-L (V)<select id="voltage"><option>220</option><option selected>380</option><option>400</option><option>415</option><option>440</option><option>480</option></select></label>
+          <label>Frequência (Hz)<select id="freq"><option>50</option><option selected>60</option></select></label>
+          <label>FP atual<input id="fp1" type="number" min="0.1" max="0.999" step="0.01" value="0.78"></label>
+          <label>FP desejado<input id="fp2" type="number" min="0.1" max="0.999" step="0.01" value="0.96"></label>
+          <label>Transformador (kVA)<input id="trafo" type="number" min="1" value="300"></label>
+          <label>Impedância Z (%)<input id="ztrafo" type="number" min="0.1" step="0.1" value="4.5"></label>
+          <label>Icc medida (kA, opcional)<input id="iccMeasured" type="number" min="0" step="0.1" value="0"></label>
+          <label>Fabricante<select id="brand"><option value="weg" selected>WEG</option><option value="abb">ABB</option><option value="schneider">Schneider Electric</option></select></label>
+          <label>THDv (%)<input id="thdv" type="number" min="0" step="0.1" value="4.2"></label>
+          <label>THDi (%)<input id="thdi" type="number" min="0" step="0.1" value="26"></label>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="submit">Dimensionar V4</button>
+          <button id="saveProject" class="btn" type="button">Salvar projeto</button>
+        </div>
+        <p id="error" class="error hidden"></p>
+      </form>
+
+      <div class="stack">
+        <div class="kpis">
+          <div class="kpi"><span>Qc</span><strong id="kQc">—</strong></div>
+          <div class="kpi"><span>Banco</span><strong id="kBank">—</strong></div>
+          <div class="kpi"><span>Ic</span><strong id="kIc">—</strong></div>
+          <div class="kpi"><span>kVA liberados</span><strong id="kFree">—</strong></div>
+        </div>
+        <div id="releaseCard" class="card status-card">
+          <div class="row between"><div><div class="eyebrow">Status técnico</div><h3 id="releaseTitle">—</h3></div><span id="releaseBadge" class="badge">—</span></div>
+          <p id="releaseText" class="muted"></p>
+        </div>
+        <div class="card"><h3>Resultado elétrico</h3><div id="results" class="result-grid"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cabos" class="panel">
+    <div class="grid two">
+      <div class="card">
+        <h2>Dimensionamento do alimentador</h2>
+        <div class="form-grid">
+          <label>Comprimento (m)<input id="length" type="number" min="1" value="20"></label>
+          <label>Material<select id="material"><option value="cu" selected>Cobre</option><option value="al">Alumínio</option></select></label>
+          <label>Isolação<select id="insulation"><option value="pvc" selected>PVC 70 °C</option><option value="xlpe">XLPE/EPR 90 °C</option></select></label>
+          <label>Método<select id="method"><option value="b1" selected>B1</option><option value="b2">B2</option><option value="c">C</option><option value="e">E</option></select></label>
+          <label>Temperatura (°C)<select id="ambient"><option>30</option><option>35</option><option selected>40</option><option>45</option><option>50</option><option>55</option><option>60</option></select></label>
+          <label>Circuitos agrupados<select id="grouping"><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+          <label>Tempo curto (s)<input id="clearTime" type="number" min="0.01" max="5" step="0.01" value="0.2"></label>
+          <label>Icu selecionado (kA)<select id="icu"><option>10</option><option selected>25</option><option>36</option><option>50</option><option>70</option><option>100</option></select></label>
+          <label>Queda máxima (%)<input id="dropLimit" type="number" min="0.1" step="0.1" value="2"></label>
+          <label>J barramento (A/mm²)<input id="jbus" type="number" min="0.5" max="3" step="0.1" value="1.5"></label>
+        </div>
+        <button id="recalcCable" class="btn primary" type="button">Recalcular</button>
+      </div>
+      <div class="stack">
+        <div class="kpis">
+          <div class="kpi"><span>Ib banco</span><strong id="cIb">—</strong></div>
+          <div class="kpi"><span>I projeto</span><strong id="cId">—</strong></div>
+          <div class="kpi"><span>Icc</span><strong id="cIcc">—</strong></div>
+          <div class="kpi"><span>Disjuntor</span><strong id="cBreaker">—</strong></div>
+        </div>
+        <div class="card"><h3>Verificações</h3><div id="cableChecks" class="checks"></div></div>
+        <div class="card"><h3>Barramento</h3><strong id="busResult">—</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="harmonicas" class="panel">
+    <div class="grid two">
+      <div class="card">
+        <h2>Espectro harmônico</h2>
+        <div class="form-grid">
+          <label>I3 (%)<input id="h3" type="number" min="0" step="0.1" value="4"></label>
+          <label>I5 (%)<input id="h5" type="number" min="0" step="0.1" value="28"></label>
+          <label>I7 (%)<input id="h7" type="number" min="0" step="0.1" value="16"></label>
+          <label>I11 (%)<input id="h11" type="number" min="0" step="0.1" value="7"></label>
+          <label>I13 (%)<input id="h13" type="number" min="0" step="0.1" value="5"></label>
+        </div>
+        <button id="recalcH" class="btn primary" type="button">Atualizar diagnóstico</button>
+      </div>
+      <div class="card"><h3>Decisão técnica</h3><div id="harmonicResult" class="checks"></div><div class="kpis compact"><div class="kpi"><span>Scc</span><strong id="hScc">—</strong></div><div class="kpi"><span>Ordem</span><strong id="hOrder">—</strong></div><div class="kpi"><span>Frequência</span><strong id="hFreq">—</strong></div></div></div>
+    </div>
+  </section>
+
+  <section id="biblioteca" class="panel">
+    <div class="card"><h2>Biblioteca técnica V4</h2><p class="muted">Dados iniciais versionados. Códigos exatos aparecem apenas quando confirmados para a configuração cadastrada.</p><div class="table-wrap"><table><thead><tr><th>Fabricante</th><th>Tipo</th><th>Modelo/Família</th><th>Código/Detalhe</th><th>Status</th></tr></thead><tbody id="productRows"></tbody></table></div></div>
+  </section>
+
+  <section id="materiais" class="panel">
+    <div class="card"><div class="row between"><div><h2>Lista de materiais</h2><p id="bomBrand" class="muted"></p></div></div><div class="table-wrap"><table><thead><tr><th>Item</th><th>Descrição</th><th>Qtd.</th><th>Referência</th><th>Unitário</th><th>Total</th></tr></thead><tbody id="bomRows"></tbody><tfoot><tr><td colspan="5" class="right"><strong>Total</strong></td><td><strong id="bomTotal">R$ 0,00</strong></td></tr></tfoot></table></div></div>
+  </section>
+
+  <section id="projetos" class="panel">
+    <div class="card"><h2>Projetos salvos</h2><p class="muted">Nesta V4 estática, os projetos ficam salvos no navegador. A versão Cloud poderá usar Firebase.</p><div id="projectList" class="project-list"></div></div>
+  </section>
+
+  <section id="relatorio" class="panel">
+    <div class="card report-card"><div class="row between"><div><div class="eyebrow">Entrega técnica</div><h2>Memorial de cálculo</h2></div><button id="printReport" class="btn primary" type="button">Imprimir / Salvar PDF</button></div><pre id="reportText"></pre></div>
+  </section>
+
+  <section class="disclaimer">Pré-dimensionamento profissional assistido. A liberação executiva deve confirmar dados reais de curto-circuito, seletividade, coordenação, método de instalação, tabelas normativas aplicáveis, ventilação, elevação térmica, catálogo vigente e estudo de qualidade de energia quando necessário.</section>
+</main>
+<script src="./js/database.js"></script>
+<script src="./js/products.js"></script>
+<script src="./js/calculations.js"></script>
+<script src="./js/harmonics.js"></script>
+<script src="./js/reports.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
